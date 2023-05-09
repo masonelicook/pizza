@@ -1,0 +1,61 @@
+import tkinter as tk
+
+class PizzaPlace:
+    def __init__(self, master):
+        self.master = master
+        master.title("Pizza Place")
+
+        # Create the welcome label
+        self.label = tk.Label(master, text="Welcome to our Pizza Place!")
+        self.label.pack()
+
+        # Create the make pizza button
+        self.make_pizza_button = tk.Button(master, text="Make Your Pizza", command=self.open_toppings_window)
+        self.make_pizza_button.pack()
+
+        # Create the toppings list
+        self.toppings_list = []
+
+    def open_toppings_window(self):
+        # Create the toppings window
+        self.toppings_window = tk.Toplevel(self.master)
+        self.toppings_window.title("Choose Your Toppings")
+
+        # Create the toppings label
+        self.toppings_label = tk.Label(self.toppings_window, text="Choose your toppings:")
+        self.toppings_label.pack()
+
+        # Create the toppings buttons
+        self.pepperoni_button = tk.Button(self.toppings_window, text="Pepperoni", command=lambda: self.add_topping("Pepperoni"))
+        self.pepperoni_button.pack()
+        self.mushroom_button = tk.Button(self.toppings_window, text="Mushroom", command=lambda: self.add_topping("Mushroom"))
+        self.mushroom_button.pack()
+        self.olive_button = tk.Button(self.toppings_window, text="Olive", command=lambda: self.add_topping("Olive"))
+        self.olive_button.pack()
+        self.peppers_button = tk.Button(self.toppings_window, text="Peppers", command=lambda: self.add_topping("Peppers"))
+        self.peppers_button.pack()
+        self.onion_button = tk.Button(self.toppings_window, text="Onion", command=lambda: self.add_topping("Onion"))
+        self.onion_button.pack()
+        self.sausage_button = tk.Button(self.toppings_window, text="Sausage", command=lambda: self.add_topping("Sausage"))
+        self.sausage_button.pack()
+
+        # Create the toppings list label
+        self.toppings_list_label = tk.Label(self.toppings_window, text="Toppings:")
+        self.toppings_list_label.pack()
+
+        # Create the toppings listbox
+        self.toppings_listbox = tk.Listbox(self.toppings_window)
+        self.toppings_listbox.pack()
+
+        
+
+    def add_topping(self, topping):
+        # Add the chosen topping to the toppings list and display it in the listbox
+        self.toppings_list.append(topping)
+        self.toppings_listbox.insert(tk.END, topping)
+
+    
+
+root = tk.Tk()
+my_pizza_place = PizzaPlace(root)
+root.mainloop()
